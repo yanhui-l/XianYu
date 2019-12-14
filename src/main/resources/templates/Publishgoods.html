@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>我发布的商品信息</title>
+    <link href="css/top.css" rel="stylesheet" type="text/css"/>
+    <link href="css/order.css" rel="stylesheet" type="text/css"/>
+    <link href="css/bottom.css" rel="stylesheet" type="text/css"/>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/layer.js"></script>
+</head>
+<body>
+<div class="nav">
+    <div class="nav_content">
+        <div class="user">
+            
+                <div class="car">
+                    <a href="cart.html" href="Login.html" ><img src="images/car.png"></a>
+                    <span>0</span>
+                </div>
+          
+            <div class="userlogo">
+                <img src="images/icon-user_47dae1a.jpg">
+                <div class="user_meua">
+
+                        <a href="Regedit.html" href="Regedit.html">立刻注册</a>
+                        <a href="Login.html" href="Login.html">立刻登录</a>
+                        <a href="order.html" href="order.html">我的订单</a>
+                        <a href="#">帮助与反馈</a>
+                        <a href="#">联系我们</a>
+
+
+                        <div>
+                            <a href="userinfo.html">尊敬的 <b>user</b></a>
+                            <a href="userinfo.html">我的资料</a>
+                            <a href="order.html">我的订单</a>
+                            <a href="cart.html">我的购物车</a>
+                            <a href="Publishgoods.html">我发布的商品</a>
+                            <a href="Login.html">退出登陆</a>
+                        </div>
+
+                </div>
+            </div>
+            <div class="search">
+                <form method="post" action="List.html">
+                    <input placeholder="搜索商品" required="true" name="name" type="text" id="myword">
+                    <input type="image" src="images/search.png"
+                           style="float:right;margin-top:6px; margin-right:6px;width:20px;height:20px;"></form>
+            </div>
+        </div>
+        <ul class="nav_link">
+            <li><img src="images/web.gif" style="width: 200px;height:80px;margin-left: -600px;margin-top: -10px"/>
+            </li>
+            <li>
+                
+                    <a href="index.html">首页</a>
+               
+              
+            <li>
+                <a href="QGXX.html">求购商品</a>
+            </li>
+            <li>
+                
+               
+                    <a href="userinfo.html">用户中心</a>
+                
+            </li>
+            <li>
+               
+            
+                    <a href="Browser.html">我的足迹</a>
+                
+            </li>
+        </ul>
+    </div>
+</div>
+<!--==========================================================================================-->
+<script src="js/jquery.min.js"></script>
+<script src="js/layer.js"></script>
+<div class="main">
+    <div class="main_content">
+        <form th:action="Publishgoods" th:method="get">
+            <p class="main_content_title"><a th:href="index" href="cart.html"><span
+                    style="color:#FD3120;">返回首页</span></a> -- 我发布的商品信息
+            </p>
+            <ul class="main_goods_title">
+                <li style="text-align:left;text-indent:25px; ">商品</li>
+                <li>单价</li>
+                <li><select name="display" class="state" type="type">
+                    <option id="a" value="10">商品状态</option>
+                    <option id="b" value="0">已上架</option>
+                    <option id="d" value="2">待审核</option>
+                    <option id="e" value="3">审核未通过</option>
+                </select></li>
+                <li>发布日期</li>
+            </ul>
+        </form>
+        <ul class="main_goods_desc">
+            <li>
+                <a href="Show.html" target="_blank">
+                    <img src="attached/201881213012.jpg"    style="width: 50px;float: left;margin-left: 20px;border: 1px solid #D2D1D0">
+                </a>
+                <div><a class="select" href="javascript:void(0)">魅族蓝牙小音箱</a>
+                    <p >5成新</p></div>
+            </li>
+            <li>￥200</li>
+            <li>已上架</li>
+            <!--<li>待审核</li>-->
+            <!--<li>审核未通过</li>-->
+            <li><span>2019-12-11</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                    class="sub" type="button" value="删除"
+                    style="background-color: #00CCFF;width: 100px;"></span></li>
+        </ul>
+        <div class="xian">
+            <p>当前第<span>1</span>页,共<span>2</span>页,共 <span
+                    >10</span>条记录</p>
+            <div class="page" align="right">
+                <a href="">首页</a>
+                <a href="">上一页</a>
+                <a href="">下一页</a>
+                <a href="">尾页</a>
+            </div>
+            <style type="text/css" rel="stylesheet">
+                .page a {
+                    background-color: #d9d9d9;
+                    padding: 0px 12px;
+                    border-radius: 2px;
+                }
+
+                .page a:hover {
+                    background-color: #c7c7c7;
+                }
+            </style>
+        </div>
+        <!--=======================================================================-->
+        <div class="footer">
+            <div class="footer_content">
+                <ul class="footer_item">
+                    <li>联系方式：</li>
+                    <li class="tit">15979675043</li>
+                    <li class="tit">1730548276@qq.com</li>
+                </ul>
+
+                <ul class="footer_item">
+                    <li>购物指南</li>
+
+                    <li><a href="#">选择配送方式</a></li>
+
+                    <li><a href="#">付款收货</a></li>
+
+                    <li><a href="#">挑选商品</a></li>
+
+                </ul>
+
+                <ul class="footer_item">
+                    <li>送货说明</li>
+
+                    <li><a href="#">购物流程</a></li>
+
+                    <li><a href="#">订购方式</a></li>
+
+                    <li><a href="#">注意事项</a></li>
+
+                </ul>
+
+                <ul class="footer_item">
+                    <li>支付方式</li>
+
+                    <li><a href="javascript:void(0)">货到付款区域</a></li>
+
+                    <li><a href="javascript:void(0)">支付方式说明</a></li>
+
+                    <li><a href="javascript:void(0)">货到付款</a></li>
+
+                </ul>
+
+                <ul class="footer_item">
+                    <li>服务政策</li>
+
+                    <li><a href="javascript:void(0)">售后服务</a></li>
+
+                    <li><a href="javascript:void(0)">退换货原则</a></li>
+
+                    <li><a href="javascript:void(0)">其他服务协议</a></li>
+
+                </ul>
+
+                <ul class="footer_item">
+                    <li>关于我们</li>
+
+                    <li><a href="javascript:void(0)">关于我们</a></li>
+
+                    <li><a href="javascript:void(0)">如何联系我们</a></li>
+
+                    <li><a href="javascript:void(0)">合作加盟</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="Shop7z_kefu">
+            <div id="service">
+                <ul>
+                    <li>
+                        <a href="javascript:void(0)" class="weixin_area">
+                            <img src="images/l02.png" width="47" height="49" class="shows"/>
+                            <img src="images/a.png" width="57" height="49" class="hides"/>
+                            <img src="images/qd.png" width="145" class="weixin"
+                                 style="display:none;margin:-100px 57px 0 0"/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" target="_blank">
+                            <div class="hides" style="width:161px;display:none;" id="qq">
+                                <div class="hides" id="p1">
+                                    <img src="images/ll04.png"/>
+                                </div>
+                                <div class="hides" id="p2"><span style="color:#FFF;font-size:13px">1599428958</span>
+                                </div>
+                            </div>
+                            <img src="images/l04.png" width="47" height="49" class="shows"/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <div class="hides" style="width:161px;display:none;">
+                                <div class="hides" id="p1">
+                                    <img src="images/ll05.png"/>
+                                </div>
+                                <div class="hides" id="p3"><span style="color:#FFF;font-size:12px">12345678991</span>
+                                </div>
+                            </div>
+                            <img src="images/l05.png" width="47" height="49" class="shows"/>
+                        </a>
+                    </li>
+                    <li>
+                        <a id="top_btn">
+                            <div class="hides" style="width:161px;display:none">
+                                <img src="images/ll06.png" width="161" height="49"/>
+                            </div>
+                            <img src="images/l06.png" width="47" height="49" class="shows"/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <script src="css/user.js"></script>
+</body>
+</html>
+
