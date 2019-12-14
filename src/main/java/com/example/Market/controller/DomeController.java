@@ -9,6 +9,9 @@ public class DomeController {
 
     @RequestMapping(value = "/Login")
     public String Login(){
+        String test="测试";
+
+
         return "Login";
     }
 }
