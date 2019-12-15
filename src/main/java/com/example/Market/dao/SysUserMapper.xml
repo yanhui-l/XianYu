@@ -1,8 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.Market.dao.SysUserMapper">
+    <!--用户登录-->
     <select id="findLogin" resultType="com.example.Market.pojo.SysUser" parameterType="com.example.Market.pojo.SysUser">
         SELECT * FROM `sysuser` WHERE
         `User_qqEmail` = #{User_qqEmail} AND `User_Password` = #{User_Password}
     </select>
+
+    <!--异步判断电话号码是否唯一-->
+    <select id="findUserInfoPhone" parameterType="string" resultType="int">
+       SELECT COUNT(0) FROM `sysuser`
+       WHERE `Phone` = #{Phone}
+    </select>
+
+    <!--查询随机数-->
+    <select id="findRandom" parameterType="string" resultType="string">
+        SELECT `ranDom` FROM `sysuser`
+        WHERE `User_qqEmail` = #{User_qqEmail}
+    </select>
+
+    <!--判断QQ用户邮箱是否唯一-->
+    <select id="findUserInfoqq" resultType="int" parameterType="string">
+        SELECT COUNT(0) FROM `sysuser`
+        WHERE `User_qqEmail` = #{User_qqEmail}
+    </select>
+
+    <!--用户注册-->
+  <insert id="addUser" parameterType="com.example.Market.pojo.SysUser">
+      INSERT INTO `sysuser`(`User_name`,`Phone`,`User_realName`,`User_Class`,`User_Dormitory`,`User_Gender`,`User_Createtime`,`User_Avatar`,`User_ViolationCount`,`User_Password`,`ranDom`,`User_qq`,`User_qqEmail`)
+      VALUES(#{User_name},#{Phone},#{User_realName},#{User_Class},#{User_Dormitory},#{User_Gender},
+       #{User_Createtime},#{User_Avatar},#{User_ViolationCount},#{User_Password},#{ranDom},#{User_qq},#{User_qqEmail})
+  </insert>
+
 </mapper>

@@ -9,9 +9,12 @@ public class DomeController {
 
     @RequestMapping(value = "/Login")
     public String Login(){
-        String test="欢迎您yyqx！";
-
-
         return "Login";
+    }
+
+
+    @RequestMapping(value = "/Regedit")
+    public String Regedit(){
+        return "Regedit";
     }
 }

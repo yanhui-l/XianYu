@@ -23,8 +23,8 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/layer.js"></script>
    <!--  放出这行代码样式会乱-->
-   <!--  <link rel="stylesheet" href="layui/css/layui.css">-->
-   <!-- <script src="layui/layui.js"></script>-->
+    <!--<link rel="stylesheet" href="layui/css/layui.css">-->
+    <!--<script src="layui/layui.js"></script>-->
    
 </head>
 <body>
@@ -85,59 +85,196 @@
     <a href="index.html">网站首页</a> &nbsp;&gt;&nbsp;
     <span class="crumbs-level" id="crumbsLevel"><a href="userinfo.html">用户信息</a></span>
 </div>
-<div class="user_bottom" style="height:555px;">
-   
+<div class="user_top">
+    <div class="user_top_content">
+        <div class="user_top_left">
+            <img src="images/member.jpg">
+            <p class="honor">普通会员</p>
+            <p class="user_top_btn" style="background:#f0ad4e; float:left; margin-left:50px;"><a href="shop7z_Signin.asp">签到</a></p>
+
+        </div>
+        <div class="user_top_center">
+            <div class="user_name">
+                <p class="user_title">user</p>
+                <p>普通会员</p>
+                <p>信息完整度</p>
+                <div class="jindu_bg">
+                    <div class="jindu" style="width:29%;">29%</div>
+                </div>
+                <p>推荐您完善个人信息，更方便下单和收货。
+                </p>
+            </div>
+            <div class="user_money">
+                <p class="user_title">我的财富</p>
+                <ul class="list-inline">
+                    <li>
+                        <span class="badge" style="background:#f0ad4e">3</span>
+                        <p class="p-xs">我的积分 </p>
+                    </li>
+                    <li>
+                        <span class="badge" style="background:#5cb85c">0</span> 元
+                        <p class="p-xs">我的余额 </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="user_top_right">
+            <p class="user_title">会员成长</p>
+            <ul>
+                <li style="margin:5px;">亲爱的会员user你好！</li>
+                <li style="margin:5px;">每天签到可获得3积分，您共签到1天，共获3积分</li>
+                <li style="margin:5px;">最近签到日期是2019/7/12日，继续努力！</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+<div class="crumbs">
+    <a  href="index.asp">网站首页</a> &nbsp;&gt;&nbsp;
+    <span class="crumbs-level" id="crumbsLevel"><a href="userinfo.asp" >用户信息</a>&nbsp;&gt;&nbsp;信息修改</span>
+</div>
+<div class="user_bottom" style="height:850px;" >
+
     <div class="user_bottom_left">
-        <img src="images/qq/1.jpg">
-        <p>user</p>
+        <img src="images/member.jpg">
+        <p>普通会员</p>
         <ul>
-            <li><a href="userinfo.html" class="active">个人资料</a></li>
-            <li><a href="cart.html">购物车</a></li>
-            <li><a href="order.html">我的订单</a></li>
-            <li><a href="FBQGXX.html">我的求购商品</a>
-            <li><a href="pubGoods.html">发布商品</a></li>
-            <li><a href="findpass.html">修改密码</a></li>
-            <li><a href="Login.html">退出登录</a></li>
+            <li><a href="userinfo.asp"  class="active">个人资料</a></li>
+            <li><a href="user_coin.asp" >帐户充值</a></li>
+            <li><a href="chzxf.asp"   >充值/消费</a></li>
+            <li><a href="cart.asp"  >购物车</a></li>
+            <li><a href="order_list.asp"  >我的订单</a></li>
+            <li><a href="user_fav.asp"   >商品收藏</a></li>
+            <li><a href="lipin_list.asp"  >签到/兑换礼品</a></li>
+            <li><a href="zhifen.asp"  >积分对帐</a></li>
+            <li><a href="addmess.asp"  >在线留言</a></li>
+            <li><a href="repassword.asp"   >修改密码</a></li>
+            <li><a href="findpass.asp"  >找回密码</a></li>
+            <li><a href="quit.asp" onclick="return confirm('确定退出?')" >退出</a></li>
         </ul>
         <div class="xian"></div>
     </div>
 
-   
 
-    <div class="form_common" style="height: 150px;position: relative;left: -165px;">
-        <div class="ibox-content">
-            <div class="row">
-                <div id="crop-avatar" class="col-md-6">
-                    <div class="avatar-view" title="更新头像">
-                        <img th:src="" src="images/qq/1.jpg" alt="headPicture"
-                             style="height: 100px;width: 100px;border-radius:50%">
-                    </div>
-                </div>
-            </div>
+    <FORM id=theForm name="theForm" action="hyzqadmin.asp" method="post"   onSubmit="return Juge()">
+        <div class="form_common">
+            <label>头像</label>
+            <center><img src="images/member.jpg" width="100px"></center>
         </div>
-        <br/>
+        <div class="form_common">
+            <label>上传头象</label>
+            <input type="text" value="images/member.jpg" size="35" name="facepic">
+            <label style="padding-left:130px;">
+                <input type="file" name="img"/>
+            </label>
+        </div>
+        <div class="form_common">
+            <label>用户名</label>
+            <input type="text" name="username" value="user" disabled  placeholder="用户名">
+        </div>
+        <div class="form_common">
+            <label>邮箱</label>
+            <input type="email"  name="email" value="2205997640@qq.com"  placeholder="邮箱">
+        </div>
+        <div class="form_common">
+            <label>密码提示问题</label>
+            <SELECT size=1 name="password_prompt">
+                <OPTION value="" selected></OPTION>
+                <OPTION value="" >请选择问题</OPTION>
+                <OPTION value="您的初中班主任是？">您的初中班主任是？</OPTION>
+                <OPTION value="您的高中班主任是？">您的高中班主任是？</OPTION>
+                <OPTION value="您的配偶的名字是？">您的配偶的名字是？</OPTION>
+                <OPTION value="您的配偶的职业是？">您的配偶的职业是？</OPTION>
+                <OPTION value="您的配偶的生日是？">您的配偶的生日是？</OPTION>
+                <OPTION value="您的父亲的名字是？">您的父亲的名字是？</OPTION>
+                <OPTION value="您的父亲的职业是？">您的父亲的职业是？</OPTION>
+                <OPTION value="您的母亲的名字是？">您的母亲的名字是？</OPTION>
+                <OPTION value="您的母亲的生日是？">您的母亲的生日是？</OPTION>
+                <OPTION value="您最喜欢的歌曲名是？">您最喜欢的歌曲名是？</OPTION>
+                <OPTION value="您最喜欢的电影名是？">您最喜欢的电影名是？</OPTION>
+            </SELECT>
+        </div>
+        <div class="form_common">
+            <label>密码提示答案</label>
+            <input type="text"  name="password_Answer" value="" placeholder="密码提示答案">
+        </div>
+        <div class="form_common">
+            <label>真实姓名</label>
+            <input type="text"  name="truename" value="" placeholder="真实姓名">
+        </div>
+
+
+        <div class="form_common">
+            <label>送货地址</label>
+            <input type="text"  name="address" value="" placeholder="送货地址">
+        </div>
+        <div class="form_common">
+            <label>联系电话</label>
+            <input type="text"  name="mobile" value="" placeholder="联系电话">
+        </div><div class="form_common">
+
+        <label>邮政编码</label>
+        <input type="text"  name="postno" value="" placeholder="邮政编码">
+    </div><div class="form_common">
+
+        <label  style="margin-top:-7px;">会员等级</label>
+        <span class="shop7z_user_info" style="margin-top:20px;">普通会员</span>
+    </div><div class="form_common">
+
+        <label  style="margin-top:-7px;">上次登陆时间</label>
+        <span class="shop7z_user_info" style="margin-top:20px;font-weight:normal;">2019/7/12 13:12:53。 登陆IP：117.168.148.240</span>
     </div>
-    <div class="form_common">
-        <label>用户名</label>
-        <input type="text" name="username"  disabled placeholder="用户名">
-    </div>
-    <div class="form_common">
-        <label>真实姓名</label>
-        <input type="text" name="rName" disabled  placeholder="真实姓名">
-    </div>
-    <div class="form_common">
-        <label>联系电话</label>
-        <input type="text" name="mobile" disabled  placeholder="联系电话">
-    </div>
-    <div class="form_common">
-        <label>注册时间</label>
-        <input type="text" name="regDate" disabled placeholder="注册时间">
-    </div>
-    <div class="form_common">
-        <label>用户班级</label>
-        <input type="text" name="admin"  disabled placeholder="用户角色">
-    </div>
+        　　
+
+        <div class="form_common" style="margin-top:-20px;" >
+            <div><input type="submit" style="margin-left:-210px;cursor:pointer;" value="保存个人信息"></div>
+        </div>
+
+    </form>
 </div>
+<div class="xian">
+</div>
+
+<SCRIPT language=javascript>
+    function Juge()
+    {
+
+
+        if (document.theForm.password_prompt.value=="")
+        {
+            layer.msg('请输入密码提示问题',{icon: 2});
+            document.theForm.password_prompt.focus();
+            return false;
+        }
+        if (document.theForm.password_Answer.value=="")
+        {
+            layer.msg('请输入密码提示问题答案',{icon: 2});
+            document.theForm.password_Answer.focus();
+            return false;
+        }
+
+        if (document.theForm.truename.value=="")
+        {
+            layer.msg('请输入用户真实姓名',{icon: 2});
+            document.theForm.truename.focus();
+            return false;
+        }
+
+        if (document.theForm.mobile.value=="")
+        {
+            layer.msg('请输入联系电话',{icon: 2});
+            document.theForm.mobile.focus();
+            return false;
+        }
+
+        if (document.theForm.address.value=="")
+        {
+            layer.msg('请输入联系地址',{icon: 2});
+            document.theForm.address.focus();
+            return false;
+        }
+    }
+</SCRIPT>
 <div class="xian">
 </div>
 

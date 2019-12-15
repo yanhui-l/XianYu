@@ -23,12 +23,12 @@ public class MailController {
      */
     @ResponseBody
     @RequestMapping("/send")
-    public String sendEmail(String qq) {
+    public String sendEmail(String qq, Model model) {
         String s = "0";
         try {
             final MimeMessage mimeMessage = this.mailSender.createMimeMessage();
             final MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
-            message.setFrom("2190046630@qq.com");
+            message.setFrom("2205997640@qq.com");
             message.setTo(qq);
             message.setSubject("鸿鹄狮鹫有限公司");
             s = String.valueOf((int) ((Math.random() * 9 + 1) * 100000));

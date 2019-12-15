@@ -22,17 +22,17 @@
                 if (yzm == "") {
                     $(".qqyx").html("请输入QQ邮箱！");
                     $('.yzmyzm').attr("disabled", "true");
-                } else if (s != "@qq.com" && yzm.length < 15) {
+                } else if (s != "@qq.com" && yzm.length <= 16) {
                     $(".qqyx").html("QQ邮箱格式错误");
                     $('.yzmyzm').attr("disabled", "true");
-                } else {
+                }else {
                     $(".qqyx").html(null);
-                    var qq1 = $(".qq").val();
+//                    var qq1 = $(".qq").val();
                     $.ajax({
                         type: "GET",//请求类型
                         url: "findUserInfoqq",//请求的url
                         data: {
-                            qq: qq1
+                            qq: yzm
                         },//请求参数
                         dataType: "json",//ajax接口（请求url）返回的数据类型·
                         success: function (date) {//data：返回数据（json对象）
@@ -323,17 +323,17 @@
                             <label class="focus valid"></label>
                         </div>
                     </div>
-                    <div class="item col-xs-12">
-                        <span class="intelligent-label f-fl"><b class="ftx04">*</b>学号：</span>
-                        <div class="f-fl item-ifo">
-                            <input type="text" class="txt03 f-r3 required" tabindex="3" data-valid="isNonEmpty"
-                                   data-error="学号不能为空||学号格式不正确" maxlength="5" id="sno" name="sno"/>
-                            <span class="ie8 icon-close close hide"></span>
-                            <label class="icon-sucessfill blank hide"></label>
-                            <label class="focus">请填写有效的学号</label>
-                            <label class="focus valid"></label>
-                        </div>
-                    </div>
+                    <!--<div class="item col-xs-12">-->
+                        <!--<span class="intelligent-label f-fl"><b class="ftx04">*</b>学号：</span>-->
+                        <!--<div class="f-fl item-ifo">-->
+                            <!--<input type="text" class="txt03 f-r3 required" tabindex="3" data-valid="isNonEmpty"-->
+                                   <!--data-error="学号不能为空||学号格式不正确" maxlength="5" id="sno" name="sno"/>-->
+                            <!--<span class="ie8 icon-close close hide"></span>-->
+                            <!--<label class="icon-sucessfill blank hide"></label>-->
+                            <!--<label class="focus">请填写有效的学号</label>-->
+                            <!--<label class="focus valid"></label>-->
+                        <!--</div>-->
+                    <!--</div>-->
                     <div class="item col-xs-12">
                         <span class="intelligent-label f-fl"><b class="ftx04">*</b>性别：</span>
                         <div class="f-fl item-ifo">
@@ -445,28 +445,26 @@
         $("#btn_part3").click(function () {
             if (!verifyCheck._click()) return;
             /*点击注册执行添加操作！*/
-            var username1 = $("#username").val();
-            var phone1 = $("#phone").val();
-            var password1 = $("#password").val();
-            var realName1 = $("#realName").val();
-            var class11 = $("#class1").val();
-            var sno1 = $("#sno").val();
-            var dormitory1 = $("#dormitory").val();
-            var gender1 = $("#gender").val();
-            var qq1 = $("#qq").val();
+            var username1 = $("#username").val();//用户名
+            var phone1 = $("#phone").val();//电话号码
+            var password1 = $("#password").val();//密码
+            var realName1 = $("#realName").val();//真实姓名
+            var class11 = $("#class1").val();//班级
+            var dormitory1 = $("#dormitory").val();//宿舍号
+            var gender1 = $("#gender").val();//性别
+            var qq1 = $("#qq").val();//QQ邮箱
             $.ajax({
                 type: "GET",//请求类型
-                url: "insertUserInfoAdd",//请求的url
+                url: "addUser",//请求的url
                 data: {
-                    userName: username1,
-                    phone: phone1,
-                    password: password1,
-                    realName: realName1,
-                    class1: class11,
-                    sno: sno1,
-                    dormitory: dormitory1,
-                    gender: gender1,
-                    qq: qq1
+                    User_name: username1,
+                    Phone: phone1,
+                    User_Password: password1,
+                    User_realName: realName1,
+                    User_Class: class11,
+                    User_Dormitory: dormitory1,
+                    User_Gender: gender1,
+                    User_qqEmail: qq1
                 },//请求参数
                 dataType: "json",//ajax接口（请求url）返回的数据类型·
                 success: function (date) {//data：返回数据（json对象）

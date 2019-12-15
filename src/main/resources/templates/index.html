@@ -22,7 +22,7 @@
                 <img src="images/icon-user_47dae1a.jpg">
                 <div class="user_meua">
 
-                        <a href="Regedit.html">立刻注册</a>
+                        <a th:href="@{Regedit}">立刻注册</a>
                         <a th:href="@{/Login}">立刻登录</a>
                         <a href="order.html">我的订单</a>
 
@@ -41,9 +41,19 @@
                 <form method="post" action="List.html">
                     <input placeholder="搜索商品" required="true" name="name" type="text" id="myword">
                     <input type="image" src="images/search.png"
-                           style="float:right;margin-top:6px; margin-right:6px;width:20px;height:20px;"></form>
+                           style="float:right;margin-top:6px; margin-right:6px;width:20px;height:20px;">
+                    <input type="image" src="images/yx.jpg" id="yx"
+                           style="float:right;margin-top:3px; margin-right:-185px;width:35px;height:25px;"/>
+                </form>
             </div>
         </div>
+        <script type="text/javascript">
+            $(function(){
+                $("#yx").click(function(){
+                    window.location.href="email.html";
+                });
+            });
+        </script>
         <ul class="nav_link">
             <li><img src="images/web.gif" style="width: 200px;height:80px;margin-left: -600px;margin-top: -10px"/>
             </li>

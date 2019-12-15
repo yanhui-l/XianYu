@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
  * Created by hqt on 2019/12/14.
  */
 public class CreatMD5 {
-    public String getMd5(String plainText) {
+    public static String getMd5(String plainText) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(plainText.getBytes());

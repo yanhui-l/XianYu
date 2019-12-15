@@ -1,0 +1,241 @@
+<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>北大青鸟 鸿鹄狮鹫-系统通知</title>
+    <link rel="stylesheet" type="text/css" href="css/dmaku.css"/>
+    <link href="css/top.css" rel="stylesheet" type="text/css"/>
+    <link href="css/item.css" rel="stylesheet" type="text/css"/>
+    <link href="css/bottom.css" rel="stylesheet" type="text/css"/>
+
+    <script type="text/javascript" src="js/layer.js"></script>
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/_layout.js"></script>
+    <!--email页面-->
+    <link rel="stylesheet" type="text/css" href="email/Inbox.css"/>
+    <script type="text/javascript" src="email/jquery-3.4.1.min.js">
+    </script>
+    <script type="text/javascript" src="email/Inbox.js"></script>
+    <script src="jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var val = $(".zt").text();
+            if (val == "") {
+                $(".inbox-msgList").css("display", "none");
+                $("#none").css("display", "block");
+            } else {
+                $(".inbox-msgList").css("display", "block");
+                $("#none").css("display", "none");
+            }
+            $("#inbox-showSysEmails").click(function () {
+                window.location.href = "findEmailUid";
+            });
+            $("#inbox-showEmails").click(function () {
+                window.location.href = "findWantGoodsUid";
+            });
+            $("#inbox-showReplies").click(function () {
+                window.location.href = "email2";
+            });
+            $(".list").click(function () {
+                var id2 = $($(this).children()[1]).children().children(".ididid").html();
+                $.ajax({
+                    type: "GET",//请求类型
+                    url: "updateHaveRead",//请求的url
+                    data: {id: id2},//请求参数
+                    dataType: "json",//ajax接口（请求url）返回的数据类型·
+                    success: function (date) {//data：返回数据（json对象）
+                        if (date != null) {
+                            $(".BT").html(date.headline);
+                            $(".FJR").html('发件人: ' + date.userName);
+                            $(".SJR").html('收件人: ' + date.userName2);
+                            $(".SJ").html(' 时  间:  ' + date.modify);
+                            $(".YXNR").html(date.content);
+                        } else {
+                            alert("查看出问题!");
+                        }
+                    },
+                    error: function (date) {//当访问时候，404，500 等非200的错误状态码
+                        alert("系统出现异常请联系管理员!");
+                    }
+                });
+            });
+            $(".inbox-msgDetail-close2").click(function () {
+                /*window.location.reload();*/
+                var confirm2 = confirm("您确定删除此邮件吗？删除后不可恢复");
+                if (confirm2 == true) {
+                    $.ajax({
+                        type: "GET",//请求类型
+                        url: "deleteEmail",//请求的url
+                        dataType: "json",//ajax接口（请求url）返回的数据类型·
+                        success: function (date) {//data：返回数据（json对象）
+                            if (date == 1) {
+                                window.location.reload();
+                                alert("删除成功!");
+                            } else {
+                                alert("删除失败!");
+                            }
+                        },
+                        error: function (date) {//当访问时候，404，500 等非200的错误状态码
+                            alert("系统出现异常请联系管理员!");
+                        }
+                    });
+                }
+            });
+        });
+
+    </script>
+</head>
+
+<body>
+<div class="nav">
+    <div class="nav_content">
+        <div class="user">
+            <div class="car">
+            </div>
+            <div class="userlogo">
+
+            </div>
+            <div class="search">
+                <form method="post" action="List.html">
+                    <input placeholder="搜索商品" required="true" name="name" type="text" id="myword"/>
+                    <input type="image" src="images/search.png"
+                           style="float:right;margin-top:6px; margin-right:6px;width:20px;height:20px;"/>
+                    <img src="images/yx.jpg" class="yx"
+                         style="float:right;margin-top:2px; margin-right:-100px;width:42px;height:25px;"/></form>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function(){
+                $("#yx").click(function(){
+                    window.location.href="email.html";
+                });
+            });
+        </script>
+        <ul class="nav_link">
+            <li><img src="images/web.gif" style="width: 200px;height:80px;margin-left: -500px;margin-top: -10px"/>
+            </li>
+            <li>
+                    <a href="index.html">首页</a>
+            </li>
+            <li>
+                <a href="QGXX.html">求购商品</a>
+            </li>
+            <li>
+               <a onclick="showAdd()" href="FBQGXX.html">发布求购商品</a>
+            </li>
+            <li>
+               <a href="userinfo.html">用户中心</a>
+            </li>
+            <li>
+               <a href="Browser.html">我的足迹</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="mask">
+    <section class="mask-content" id="inbox">
+        <div id="inbox-funcs" style="border: 1px solid red;">
+            <p id="inbox-showSysEmails" class="list-item-active hover" style="background-color: #efefef;">系统邮件</p>
+            <p id="inbox-showEmails" class="list-item-active hover">我的留言</p>
+            <p id="inbox-showReplies" class="list-item-active hover">我的评论</p>
+        </div>
+        <div id="inbox-content">
+            <div id="inbox-sysEmailList" class="inbox-msgList" style="display: block;">
+                <div class="list">
+                    <div class="list-head"></div>
+                    <div class="list-item list-item-active hover" id="djxq">
+                            <img src="images/wd.png" style="width: 33px;height: 28px;position: relative;top: -4px;">
+                            <span style="font-size: 13px;">闲鸟管理员</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span style="font-size: 13px;" class="zt">主题</span>
+                            <span style="font-size: 13px;width:400px;display:inline-block;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;position: relative;top: 3px;">内容</span>
+                            <span style="font-size: 13px;position: relative;left: 200px;">时间</span>
+                            <p class="ididid" style="display: none">id</p>
+                            <img src="images/yd.jpg" style="width: 32px;height: 20px;position: relative;left: 1px;">
+                            <span style="font-size: 13px;color: #696464;">闲鸟管理员</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span class="zt">主题</span>
+                            <span style="font-size: 13px;color: #696464;width:400px; display:inline-block;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;position: relative;top: 3px;">内容</span>
+                            <span style="font-size: 13px;color: #696464;position: relative;left: 200px;">时间</span>
+                            <p class="ididid" style="display: none">id</p>
+                    </div>
+                </div>
+                <div class="xian" style="position: relative;left: -300px;top: 0px;">
+                    <div class="page">
+                        <span style="margin-left: -50px;position: relative;left: -100px;"></span>
+                        共<span>10</span>条记录&nbsp;每页<span>5</span>条&nbsp;现在<span>1</span>/<span>2</span>页
+                        <a id="index" href="">首页</a>
+                        <a href="" id="top">上一页</a>
+                        <a href="" id="bottom">下一页</a>
+                        <a id="last" href="">尾页</a>
+                    </div>
+                    <style type="text/css">
+                        .page a {
+                            background-color: #d9d9d9;
+                            padding: 4px 12px;
+                            border-radius: 2px;
+                        }
+
+                        .page a:hover {
+                            background-color: #c7c7c7;
+                        }
+                    </style>
+                </div>
+            </div>
+            <div id="inbox-emailDetail" class="inbox-msgDetail">
+                <div class="inbox-msgDetail-header">
+                    <input class="inbox-msgDetail-close" type="button" value="返回"/>
+                    <h3>信息详情</h3>
+                </div>
+                <div class="inbox-msgDetail-content" style="position:relative;left: -60px;">
+                    <div class="inbox-msgTitle"
+                         style="height: 100px;border-bottom: 1px solid #d9d9d9; background-color: #eff5fb;">
+                        <p>
+                            <br/>
+                            <strong><span class="BT" style="font-size: 16px;">这是标题</span></strong>
+                            <br/>
+                            <span class="FJR" style="font-size: 13px;color: #545556;">发件人：这是发件人</span>
+                            <br/>
+                            <span class="SJR" style="font-size: 13px;color: #545556;">收件人：郑杜强</span>
+                            <br/>
+                            <span class="SJ" style="font-size: 13px;color: #545556;">时 间：2018-08-08</span>
+                            <br/>
+                        </p>
+                    </div>
+                    <div class="inbox-msgContent">
+                        <!--th:text="${emailXQs.content}"-->
+                        <p class="YXNR" style="font-size: 16px;">邮件内容！邮件内容！邮件内容！邮件内容！邮件内容！</p>
+                    </div>
+                    <div class="inbox-msgEnd">
+                        <input class="inbox-msgDetail-close2" type="button" value="删除"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="mask-mask"></div>
+</div>
+
+<div class="footer">
+    <p>@版权所有 北大青鸟 鸿鹄狮鹫</p>
+</div>
+<div style="display: none;position: static;margin-top:-500px;" id="none">
+    <div style="margin:0 2% 0 35% ;float:left; "><img src="images/404img.png"></div>
+    <div style="margin:0 0 0 45% ;  padding-top:-100px;"><p style="line-height:30px;font-size:1.8rem;color:blue;">
+        抱歉没有找到相关商品</p>
+        <p style="line-height:30px;font-size:1.4rem;color:blue;">建议您：</p>
+        <p style="line-height:30px;font-size:1.4rem;color:blue;">1.适当减少筛选条件</p>
+        <p style="line-height:30px;font-size:1.4rem;color:blue;">2.尝试其他关键字</p>
+    </div>
+</div>
+<script language="javascript">/*
+ //防止页面后退
+ history.pushState(null, null, document.URL);
+ window.addEventListener('popstate', function () {
+ history.pushState(null, null, document.URL);
+ });*/
+</script>
+<script src="css/user.js"></script>
+</body>
+</html>

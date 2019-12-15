@@ -1,0 +1,201 @@
+<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>北大青鸟 鸿鹄狮鹫-我的留言</title>
+    <link rel="stylesheet" type="text/css" href="css/dmaku.css"/>
+    <link href="css/top.css" rel="stylesheet" type="text/css"/>
+    <link href="css/item.css" rel="stylesheet" type="text/css"/>
+    <link href="css/bottom.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/layer.js"></script>
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/_layout.js"></script>
+    <!--emial页面-->
+    <link rel="stylesheet" type="text/css" href="email/Inbox.css"/>
+    <script type="text/javascript" src="email/jquery-3.4.1.min.js">
+    </script>
+    <script type="text/javascript" src="email/Inbox.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#inbox-showSysEmails").click(function () {
+                window.location.href = "findEmailUid";
+            });
+            $("#inbox-showEmails").click(function () {
+                window.location.href = "findWantGoodsUid";
+            });
+            $("#inbox-showReplies").click(function () {
+                window.location.href = "email2";
+            });
+        });
+    </script>
+</head>
+
+<body>
+<div class="nav">
+    <div class="nav_content">
+        <div class="user">
+            <div class="car">
+            </div>
+            <div class="userlogo">
+
+            </div>
+            <div class="search">
+                <form method="post" th:action="@{/findGoodsInfoName}">
+                    <input placeholder="搜索商品" required="true" name="name" type="text" id="myword"/>
+                    <input type="image" src="images/search.png"
+                           style="float:right;margin-top:6px; margin-right:6px;width:20px;height:20px;"/>
+                    <img src="images/yx.jpg" class="yx"
+                         style="float:right;margin-top:2px; margin-right:-100px;width:42px;height:25px;"/></form>
+            </div>
+        </div>
+        <ul class="nav_link">
+            <li><img src="images/web.gif" style="width: 200px;height:80px;margin-left: -500px;margin-top: -10px"/>
+            </li>
+            <li>
+                <a href="index.html">首页</a>
+            </li>
+            <li>
+                <a href="pubGoods.html" id="fbsp">发布商品</a>
+            </li>
+            <li>
+                <a href="QGXX.html">求购商品</a>
+            </li>
+            <li>
+                <a onclick="showAdd()" href="FBQGXX.html">发布求购商品</a>
+            </li>
+            <li>
+                <a href="userinfo.html">用户中心</a>
+            </li>
+            <li>
+                <a href="Browser.html">我的足迹</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="mask">
+    <section class="mask-content" id="inbox">
+        <div id="inbox-funcs" style="border: 1px solid #030000;">
+            <p id="inbox-showSysEmails" class="list-item-active hover">系统邮件</p>
+            <p id="inbox-showEmails" class="list-item-active hover" style="background-color: #efefef;">我的留言</p>
+            <p id="inbox-showReplies" class="list-item-active hover">我的评论</p>
+        </div>
+        <div id="inbox-content">
+            <div id="inbox-emailList" class="inbox-msgList" style="display: block;">
+                <div class="list">
+                    <div class="list-head"></div>
+                    <div class="list-item list-item-active hover">
+                        <th:if>
+                            <img src="images/yd.jpg" style="width: 33px;height: 28px;position: relative;top: -4px;">
+                            <span style="font-size: 13px;">留言人</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span style="font-size: 13px;">您评论过的求购信息-</span>
+                            <span style="font-size: 13px;width:350px;display:inline-block;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;position: relative;top: 3px;">求购商品的内容</span>
+                            <span style="font-size: 13px;position: relative;left: 200px;">时间</span>
+                            <p class="ididid" style="display: none">id</p>
+                        </th:if>
+                        <!--<th:if th:if="${emailUid.haveRead==1}">
+                            <img src="images/yd.jpg" style="width: 32px;height: 20px;position: relative;left: 1px;">
+                            <span th:if="${emailUid.uid==-1000}" style="font-size: 13px;color: #696464;">闲鸟管理员</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span th:text="${emailUid.zheadline}+' -'" style="font-size: 13px;color: #696464;">主题</span>
+                            <span th:text="${emailUid.content}"
+                                  style="font-size: 13px;color: #696464;width:400px; display:inline-block;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;position: relative;top: 3px;">内容</span>
+                            <span th:text="${#dates.format(emailUid.modify,'yyyy-MM-dd HH:mm:ss')}"
+                                  style="font-size: 13px;color: #696464;position: relative;left: 200px;">时间</span>
+                            <p th:text="${emailUid.id}" class="ididid" style="display: none">id</p>
+                        </th:if>-->
+                    </div>
+                </div>
+                <div class="xian" style="position: relative;left: -300px;">
+                    <div class="page">
+                        <span style="margin-left: -50px;position: relative;left: -100px;"></span>
+                        共<span>10</span>条记录&nbsp;每页<span
+                    >5</span>条&nbsp;现在<span
+                    >1</span>/<span
+                    >2</span>页
+                        <a id="index"
+                           href="">首页</a>
+                        <a href=""
+                           id="top">上一页</a>
+                        <a href=""
+                           id="bottom">下一页</a>
+                        <a id="last"
+                           href="">尾页</a>
+                    </div>
+                    <style type="text/css">
+                        .page a {
+                            background-color: #d9d9d9;
+                            padding: 4px 12px;
+                            border-radius: 2px;
+                        }
+
+                        .page a:hover {
+                            background-color: #c7c7c7;
+                        }
+                    </style>
+                </div>
+            </div>
+            <div id="inbox-emailDetail" class="inbox-msgDetail">
+                <div class="inbox-msgDetail-header">
+                    <input class="inbox-msgDetail-close" type="button" value="返回"/>
+                    <h3>留言详情</h3>
+                </div>
+                <div class="inbox-msgDetail-content" style="position:relative;left: -60px;">
+                    <div class="inbox-msgTitle"
+                         style="height: 150px;border-bottom: 1px solid #d9d9d9; background-color: #eff5fb;">
+                        <p>
+                            <br/>
+                            <strong><span class="BT"
+                                          style="font-size: 15px;">你回复的求购信息：地方大法大师傅撒旦发撒旦发撒打发士大傅撒旦发撒打发士大夫撒地方</span></strong>
+                            <br/>
+                            <span class="FJR" style="font-size: 14px;color: #545556;">发布者：发布人</span>
+                            <br/>
+                            <span class="SJ" style="font-size: 14px;color: #545556; ">回复时间：2018-08-08</span>
+                            <br/>
+                        </p>
+                    </div>
+                    <div class="inbox-msgEnd">
+                        <input class="open" type="button" value="查看所有回复"/>
+                    </div>
+                </div>
+                <div class="inbox-msgReplyList" style="position: absolute;left: 10px;">
+                    <br/>
+                    <p style="font-size: 14px;">
+                        <span>A回复B：</span>
+                        Test
+                        <span style="color: #545556;position: relative;left: 700px;">时间：2018-08-08-12:05</span>
+                    </p>
+                    <p style="border-top: 1px solid #000000;width: 1000px;"></p>
+                    <br/>
+                    <form name="Form2" method="post">
+                        <input id="gid" name="gid" type="hidden"/>
+                        <input type="hidden" name="productid" value="4939">
+                    <textarea class="textarea" placeholder="点击这里回复留言信息，我们会第一时间通知用户。"
+                              style="width: 400px;height: 70px; border:solid 1px #030000;resize:none;"
+                              name="content" id="content"></textarea>
+                        <br/>
+                        <a href="#"
+                           style="position: relative;left: 330px;top: 18px;background-color:#219897;font-size: 14px;padding: 8px 18px 8px 18px;color: #ffffff;">回复</a>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <div class="mask-mask"></div>
+</div>
+<div class="footer">
+    <p>@版权所有 北大青鸟 鸿鹄狮鹫</p>
+</div>
+<script language="javascript">
+    //防止页面后退
+    history.pushState(null, null, document.URL);
+    window.addEventListener('popstate', function () {
+        history.pushState(null, null, document.URL);
+    });
+</script>
+<script src="css/user.js"></script>
+</body>
+</html>
