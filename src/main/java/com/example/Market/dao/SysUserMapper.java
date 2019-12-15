@@ -1,5 +1,7 @@
 package com.example.Market.dao;
 
-public interface SysUserMapper {
+import com.example.Market.pojo.SysUser;
 
+public interface SysUserMapper {
+   SysUser findLogin(SysUser user);
 }
